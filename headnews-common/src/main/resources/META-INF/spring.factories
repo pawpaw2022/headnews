@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  xyz.goblin.common.exception.ExceptionCatch,\
+  xyz.goblin.common.swagger.SwaggerConfiguration,\
+  xyz.goblin.common.swagger.Swagger2Configuration
