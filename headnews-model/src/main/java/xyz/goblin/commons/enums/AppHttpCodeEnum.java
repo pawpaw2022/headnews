@@ -1,4 +1,4 @@
-package xyz.goblin.common.enums;
+package xyz.goblin.commons.enums;
 
 
 public enum AppHttpCodeEnum {

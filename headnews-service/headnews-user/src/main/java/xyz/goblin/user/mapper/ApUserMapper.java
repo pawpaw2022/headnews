@@ -1,4 +1,4 @@
-package xyz.goblin.mapper;
+package xyz.goblin.user.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

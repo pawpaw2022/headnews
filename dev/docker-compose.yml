@@ -1,0 +1,32 @@
+version: '1'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    restart: always
+    command: --init-file /data/application/init.sql
+    volumes:
+      - ./mysql/users_init.sql:/data/application/init.sql
+
+  redis:
+    image: redis:6.0-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: always
+
+  nacos:
+    image: nacos/nacos-server:v1.4.7-slim
+    container_name: nacos
+    ports:
+      - "8848:8848"
+    environment:
+      - MODE=standalone
+    restart: always
+
+

@@ -1,4 +1,4 @@
-package xyz.goblin.common.swagger;
+package xyz.goblin.commons.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ public class SwaggerConfiguration {
                 .apiInfo(buildApiInfo())
                 .select()
                 // 要扫描的API(Controller)基础包
-                .apis(RequestHandlerSelectors.basePackage("com.heima"))
+                .apis(RequestHandlerSelectors.basePackage("xyz.goblin"))
                 .paths(PathSelectors.any())
                 .build();
     }

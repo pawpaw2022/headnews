@@ -1,11 +1,11 @@
-package xyz.goblin.common.exception;
+package xyz.goblin.commons.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import xyz.goblin.common.dtos.ResponseResult;
-import xyz.goblin.common.enums.AppHttpCodeEnum;
+import xyz.goblin.commons.dtos.ResponseResult;
+import xyz.goblin.commons.enums.AppHttpCodeEnum;
 
 @ControllerAdvice  //控制器增强类
 @Slf4j

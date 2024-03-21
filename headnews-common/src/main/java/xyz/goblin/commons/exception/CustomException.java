@@ -1,6 +1,6 @@
-package xyz.goblin.common.exception;
+package xyz.goblin.commons.exception;
 
-import xyz.goblin.common.enums.AppHttpCodeEnum;
+import xyz.goblin.commons.enums.AppHttpCodeEnum;
 
 public class CustomException extends RuntimeException{
 

@@ -1,4 +1,4 @@
-package xyz.goblin.common.dtos;
+package xyz.goblin.commons.dtos;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

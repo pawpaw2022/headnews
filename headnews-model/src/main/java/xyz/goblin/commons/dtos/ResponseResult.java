@@ -1,7 +1,7 @@
-package xyz.goblin.common.dtos;
+package xyz.goblin.commons.dtos;
 
 
-import xyz.goblin.common.enums.AppHttpCodeEnum;
+import xyz.goblin.commons.enums.AppHttpCodeEnum;
 import com.alibaba.fastjson.JSON;
 
 import java.io.Serializable;

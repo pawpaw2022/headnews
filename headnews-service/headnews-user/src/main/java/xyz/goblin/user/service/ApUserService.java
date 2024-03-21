@@ -1,7 +1,7 @@
-package xyz.goblin.service;
+package xyz.goblin.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import xyz.goblin.common.dtos.ResponseResult;
+import xyz.goblin.commons.dtos.ResponseResult;
 import xyz.goblin.user.dtos.LoginDto;
 import xyz.goblin.user.pojos.ApUser;
 

@@ -1,4 +1,4 @@
-package xyz.goblin.service.impl;
+package xyz.goblin.user.service.impl;
 
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -8,10 +8,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
-import xyz.goblin.common.dtos.ResponseResult;
-import xyz.goblin.common.enums.AppHttpCodeEnum;
-import xyz.goblin.mapper.ApUserMapper;
-import xyz.goblin.service.ApUserService;
+import xyz.goblin.commons.dtos.ResponseResult;
+import xyz.goblin.commons.enums.AppHttpCodeEnum;
+import xyz.goblin.user.mapper.ApUserMapper;
+import xyz.goblin.user.service.ApUserService;
 import xyz.goblin.user.dtos.LoginDto;
 import xyz.goblin.user.pojos.ApUser;
 import xyz.goblin.utils.common.AppJwtUtil;
