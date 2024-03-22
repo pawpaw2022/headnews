@@ -1,3 +1,5 @@
+# application name: headnews-app-gateway
+
 spring:
   cloud:
     gateway:
@@ -16,7 +18,7 @@ spring:
       routes:
         # 平台管理
         - id: user
-          uri: lb://leadnews-user
+          uri: lb://headnews-user
           predicates:
             - Path=/user/**
           filters:

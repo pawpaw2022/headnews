@@ -1,5 +1,6 @@
 version: '1'
 
+# docker-compose up -d --force-recreate
 services:
   mysql:
     image: mysql:8.0
@@ -9,9 +10,16 @@ services:
     ports:
       - "3306:3306"
     restart: always
-    command: --init-file /data/application/init.sql
     volumes:
-      - ./mysql/users_init.sql:/data/application/init.sql
+      - "./mysql/users_init.sql:/docker-entrypoint-initdb.d/1.sql" # pre-load headnews-user
+      - "./mysql/nacos_config_init.sql:/docker-entrypoint-initdb.d/2.sql" # pre-load nacos_config
+      - "./mysql/nacos_config_data.sql:/docker-entrypoint-initdb.d/3.sql" # pre-load nacos_config_data
+
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 10s
+      retries: 10
 
   redis:
     image: redis:6.0-alpine
@@ -21,12 +29,39 @@ services:
     restart: always
 
   nacos:
-    image: nacos/nacos-server:v1.4.7-slim
+    image: nacos/nacos-server:v2.3.1-slim
     container_name: nacos
+    restart: always
     ports:
       - "8848:8848"
+      - "9848:9848"
+    volumes:
+      - ./nacos/logs:/home/nacos/logs
+    privileged: true
     environment:
-      - MODE=standalone
-    restart: always
+      PREFER_HOST_MODE: hostname
+      MODE: standalone
+      SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_SERVICE_HOST: mysql
+      MYSQL_SERVICE_PORT: 3306
+      MYSQL_SERVICE_USER: root
+      MYSQL_SERVICE_PASSWORD: root
+      MYSQL_SERVICE_DB_NAME: nacos_config
+      MYSQL_SERVICE_DB_PARAM: characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+      NACOS_AUTH_TOKEN: SecretKey01234567890123456789012345345678999987654901234567890123456789
+      NACOS_AUTH_IDENTITY_KEY: root
+      NACOS_AUTH_IDENTITY_VALUE: root
 
+    depends_on:
+      mysql:
+        condition: service_healthy
 
+  nginx:
+    image: nginx:stable-alpine3.17-slim
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ../app-web:/usr/share/nginx/html
+    restart: unless-stopped
